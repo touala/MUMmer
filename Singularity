@@ -16,19 +16,18 @@ export PATH="/usr/local/bin:$PATH"
 %post
   apt-get update && apt-get -y install git man build-essential python-dev wget unzip libz-dev libbz2-dev gnuplot slang-xfig
 
-	cd /opt
-	wget --auth-no-challenge -O mummer.tar.gz https://github.com/mummer4/mummer/releases/download/v4.0.0rc1/mummer-4.0.0rc1.tar.gz
-	tar -xvzf mummer.tar.gz
-	cd mummer-*/
-	./configure --prefix=/usr/local
-	make -j10
-	make install
-	ldconfig
-	
-	cd /opt
-	rm -fr mummer-*.tar.gz
-	rm -fr mummer-*/
-  
+  cd /opt
+  curl -o mummer.tar.gz -L https://github.com/mummer4/mummer/releases/download/v4.0.0rc1/mummer-4.0.0rc1.tar.gz
+  tar -xvzf mummer.tar.gz
+  cd mummer-*/
+  ./configure --prefix=/usr/local
+  make -j10
+  make install
+  ldconfig
+
   # Clean up image
+  cd /opt
+  rm -fr mummer-*.tar.gz
+  rm -fr mummer-*/
   apt-get autoremove --purge
   apt-get clean
