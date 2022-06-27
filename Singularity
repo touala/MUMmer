@@ -14,7 +14,7 @@ export PATH="/usr/local/bin:$PATH"
    exec mummer "$@"
 
 %post
-  apt-get update && apt-get -y install git man build-essential python-dev wget unzip libz-dev libbz2-dev gnuplot slang-xfig
+  apt-get update && apt-get -y install git man build-essential python-dev curl unzip libz-dev libbz2-dev gnuplot slang-xfig
 
   cd /opt
   curl -o mummer.tar.gz -L https://github.com/mummer4/mummer/releases/download/v4.0.0rc1/mummer-4.0.0rc1.tar.gz
